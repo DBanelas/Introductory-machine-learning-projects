@@ -1,0 +1,247 @@
+\documentclass[12pt]{article}
+\usepackage{a4wide}
+\usepackage{color, amssymb}
+\usepackage[document]{ragged2e}
+\usepackage[greek,english]{babel}
+\usepackage[iso-8859-7]{inputenc}
+\renewcommand{\baselinestretch}{1.5}
+\input{epsf}
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\graphicspath{ {./images_zervaki/} }
+
+
+
+
+\begin{document}
+
+\greektext
+
+\noindent\rule{\textwidth}{2pt}
+\begin{center}
+{\bf Αναφορά αποτελεσμάτων \textlatin{HomeWork 1}}\\
+{\bf Μπανέλας Δημήτριος:} 2018030140\\
+{\bf Μάθημα:} Στατιστική Μοντελοποίηση και Αναγνώριση Προτύπων\\
+{\bf Διδάσκων θεωρίας:} Ζερβάκης Μιχαήλ\\
+{\bf Διδάσκων εργαστηρίου:} Διακολουκάς Βασίλειος\\
+\end{center}
+\rule{\textwidth}{.5pt}
+%\vskip .5cm
+\noindent
+
+\begin{center}
+ \section*{Περιεχόμενα αναφοράς και οδηγίες εκτέλεσης κώδικα}
+ \justify
+ 
+ Η παρούσα αναφορά θα παρούσιασει και θα εξηγήσει τα αποτελέσματα των ασκήσεων 1, 3 και 5, δηλαδή των ασκήσεων που είχαν σχέση με κώδικα. Οι υπόλοιπες ασκήσεις έχουν λυθεί στο χαρτί και θα βρεθούν στον αντίστοιχο φάκελο.
+ 
+ Ο κώδικας που αναπτύχθηκε για τις ανάγκες των ασκήσεων βρίσκεται στα αρχεία με κώδικα που έχουν ήδη δοθεί. Ο τρόπος εκτέλεσης έμεινε ίδιος με πριν. Πιο συγκεκριμένα, μετά απο κάθε ενέργεια, το πρόγραμμα γίνεται \textlatin{pause} και περιμένει το πάτημα ενός πλήκτρου από τον χρήστη για να συνεχιστεί. Σημαντικό είναι, να υπάρχει παρατήρηση του \textlatin{console} καθ΄ όλη τη διάρκεια εκτέλεσης του κάθε προγράμματος, καθώς εκεί εμφανίζονται σημαντικές πληροφορίες.
+ 
+ Σε πολλά σημεία υπάρχουν \textlatin{blocks} κώδικα που βρίσκονται μέσα σε σχόλια. Ο κώδικας αυτός γράφτηκε για την καλύτερη κατανόηση των εννοιών και δεν είναι απαραίτητος για την ορθή λειτουργία του κάθε προγράματος. Τέλος, ο κώδικας περιέχει επεξηγηματικά σχόλια έτσι ώστε να μπορεί να διαβαστεί με σχετική ευκολία.
+ 
+ \newpage
+ 
+ \section*{Θέμα 1: \textlatin{Principal Component Analysis (PCA)}}
+ 
+ \subsection*{Μέρος 1}
+ Στο πρώτο μέρος ασχοληθήκαμε με τυχαία \textlatin{2D} δεδομένα στα οποία εφαρμόσαμε \textlatin{PCA} έτσι ώστε να κατανοήσουμε τη λειτουργία του.
+ 
+ Αρχικά χρειάστηκε να κανονικοποιήσουμε τα δεδομένα, αφού ο \textlatin{PCA} αντιμετωπίζει προβλήματα όταν υπάρχουν μεγάλες διαφορές μεταξύ των τιμών των χαρακτηριστικών. Π.χ έαν τα χαρακτηριστικά για τα οποία είχαμε δεδομένα ήταν το ύψος (\textlatin{mm}) και το βάρος ( \textlatin{Kg}) ενός ανθρώπου, τότε η κατεύθυνση της μέγιστης διασποράς θα ήταν πάντα αυτή του ύψους, λόγω της κλίμακας στην οποία έγιναν οι μετρήσεις.\\
+ 
+ Παρακάτω παρατίθενται τα \textlatin{plots} των δεδομένων πριν και μετά την κανονικοποίηση.
+ \begin{figure}[ht]
+\centering
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{1}
+\end{subfigure}%
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{2}
+\end{subfigure}
+\textlatin{\caption{Data before and after normalization}}
+\end{figure}\\
+
+\newpage
+Έπειτα, εφαρμόσαμε τον \textlatin{PCA} βρίσκοντας τις κατευθύνσεις της μέγιστης διασποράς, καθώς και τι ποσοστό της ολικής διασποράς 'κουβαλάει' η κάθε κατεύθυνση. Παρακάτω παρατίθενται τα \textlatin{plots} των \textlatin{Principal Components} πάνω στα δεδομένα, καθώς και η ανάκτηση των δεδομένων από τον \textlatin{1D} χώρο στον \textlatin{2D}, πάνω στο πρώτο \textlatin{PC}.
+
+\begin{figure}[ht]
+\centering
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{3}
+\end{subfigure}%
+\begin{subfigure}{.60\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{4}
+\end{subfigure}
+\textlatin{\caption{PC1\_variance = 86.77\% , PC2\_variance = 13.22\%}}
+\end{figure}
+
+Παρατηρούμε πως πράγματι το πρώτο \textlatin{PC} μας δίνει την κατεύθυνση στην οποία τα δεδομένα έχουν την μεγαλύτερη διασπορά. Επίσης, μπορούμε να δούμε ότι μετά την προβολή των δεδομένων πάνω στο πρώτο \textlatin{PC} έχουμε καταφέρει πάμε στον \textlatin{1D} χώρο διατηρώντας ταυτόχρονα, αρκετά μεγάλο ποσοστό της αρχικής διασποράς.
+
+\subsection*{Μέρος 2}
+
+Στο δεύτερο μέρος εφαρμόσαμε \textlatin{PCA} σε έναν μεγάλο όγκο δεδομένων απο εικόνες προσώπων μειώνοντας τις διαστάσεις, και παρατηρήσαμε τα αποτελέσματα. Σε αυτό το πείραμα, αξίζει να σταθούμε στα εξής δύο πράγματα:
+\newpage
+
+\begin{itemize}
+ \item \textlatin{Eigenfaces: }
+ 
+ Εφαρμόζοντας \textlatin{PCA} στα δεδομένα πήραμε έναν πίνακα με 1024 \textlatin{PCs}. Παρατίθεται το \textlatin{plot} των πρώτων 36: 
+ \begin{figure}[ht]
+ \centering
+ \includegraphics[scale = 0.8]{5}
+  \textlatin{\caption{Faces from 36 first PCs}}
+ \end{figure}
+ 
+ 
+ Παρατηρούμε πως το κάθε ιδιοδιάνυσμα, περιέχει πληροφορία η οποία είναι αρκετή για να σχηματιστεί μια εικόνα. Η πληροφορία αυτή είναι τα κύρια χαρακτηριστικά, τα οποία διαχωρίζουν τις εικόνες μεταξύ τους. Πχ το πρώτο \textlatin{eigenface}, οπως φαίνεται στο παραπάνω \textlatin{figure}, περιέχει πληροφορία για την φωτεινότητα των εικόνων. Οι είκόνες των \textlatin{eigenfaces} αποτελούν τις \textlatin{"base"} εικόνες των πραγματικων εικόνων. Οι πραγματικές εικόνες μπορούν να κατασκευαστούν από έναν γραμμικό των \textlatin{eigenfaces}.
+
+ 
+ \newpage
+
+ 
+ 
+ \item Ποσοστό συνολικής διασποράς σε Κ \textlatin{Principal Components:}
+ 
+ Παρατίθεται ο πίνακας με τις μετρήσεις το ποσοστό της συνολικής διασποράς πάνω σε K \textlatin{PCs}.
+ 
+ \begin{table}[ht]
+\textlatin{\caption{Percentage of total variance in K PCs}}
+\centering % used for centering table
+\begin{tabular}{c c c c} % centered columns (4 columns)
+\hline\hline %inserts double horizontal lines
+\textlatin{K} & \textlatin{\% of variance} \\ [0.5ex] % inserts table
+%heading
+\hline % inserts single horizontal line
+50 & 86.79 \\ % inserting body of the table
+100 & 93.19 \\
+150 & 95.86 \\
+200 & 97.30 \\
+300 & 98.72 \\ [1ex] % [1ex] adds vertical space
+\hline %inserts single line
+\end{tabular}
+\label{table:nonlin} % is used to refer this table in the text
+\end{table}
+
+Μπορούμε να παρατηρήσουμε ότι ρίχνοντας τις διαστάσεις από τις αρχικές 1024 στις 50 διατηρείται το 86.79\% της αρχικής πληροφορίας. Σίγουρα ένα τέτοιο ποσοστό δεν είναι αρκετό για να είναι αξιόπιστα τα τελικά δεδομένα, ωστόσο είναι αποδεικτικό του πόσο αποδοτικός είναι ο \textlatin{PCA} στον συγκεκριμένο τύπο προβλημάτων. Επίσης, γίνεται αντιληπτό πως με μόλις 200/1024 διαστάσεις μπορεί να διατηρηθεί το 97+\% της αρχικής πληροφορίας, κάτι το οποίο είναι πολύ σημαντικό αφού η μείωση αυτή των δεδομένων θα επιτρέψει στους \textlatin{machine learning} αλγορίθμους να εκπαιδευτούν πολύ πιο γρήγορα, χωρίς σημαντική μείωση της αξιοπιστίας των δεδομένων. Τέλος, αξίζει να αναφέρουμε πως σε περίπτωση που αναγκαία θα ήταν η διατήρηση των χαρακτηριστικών τα οποία διαφοροποιούν κάποιες κλάσεις, ο \textlatin{PCA} θα αποτύγχανε, αφού κοιτάζει να μεγίστοποιήσει μόνο τη διασπορά των δεδομένων.
+
+ 
+\end{itemize}
+
+
+ \newpage
+ 
+  \section*{Θέμα 3: \textlatin{Linear Discriminant Analysis(LDA) vs PCA}}
+  \subsection*{Μέρος 1}
+  
+  Στο πρώτο μέρος συγκρίναμε τους \textlatin{PCA} και \textlatin{LDA} και παρατηρήσαμε τις διαφορές τους, εφαρμόζοντας τους σε τεχνητά \textlatin{2D} δεδομένα 2 κλάσεων.
+
+  Αφού κανονικοποιήσαμε τα δεδομένα, βρήκαμε την ευθεία την οποία παράγει ο \textlatin{LDA}, καθώς και αυτή που παράγει ο \textlatin{PCA}.Επειτα, προβάλλαμε τα δεδομένα μας πάνω στις ευθείες αυτές, και αυτά ήταν τα αποτελέσματα:\\
+  
+  \begin{figure}[ht]
+\centering
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{6}
+\end{subfigure}%
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{7}
+\end{subfigure}
+\end{figure}
+
+Στις παραπάνω εικόνες μπορούμε να δούμε ξεκάθαρα τις διαφορές μεταξύ των αλγορίθμων, καθώς έχουν επιλέξει διαφορετικές ευθείες για την προβολή των δεδομένων. 
+  
+  \begin{itemize}
+ \item \textlatin{PCA: }
+ 
+ Ειναι φανερό πως ο \textlatin{PCA}, μην έχοντας πληροφορίες για τα
+ \textlatin{class labels}, προσπαθεί να βρεί μόνο την κατεύθυνση στην οποία η διασπορά των δεδομένων είναι η μέγιστη. Επιτυγχάνοντας το αυτό, χάνεται η διαχωρισιμότητα μεταξύ των δύο κλάσεων, επομένως δεν θα μπορούσαμε να τρέξουμε εύκολα κάποιον \textlatin{classification } αλγόριθμο αργότερα.
+ \newpage
+ 
+ \item \textlatin{LDA: }
+ 
+ O \textlatin{LDA}, γνωρίζοντας τα \textlatin{class labels}, προσπαθεί μία βέλτιστη κατεύθυνση, στην οποία τα \textlatin{means} των κλάσεων έχουν τη μέγιστη απόσταση μεταξύ τους, και οι \textlatin{within class variances} είναι ελάχιστες. Παρατήρουμε ότι το αποτέλεσμα είναι αρκετά καλό, και θα κάνει το \textlatin{classification} αρκετά εύκολο. Αυτός είναι ο λόγος για το γεγονός ότι ο \textlatin{LDA} μπορεί να χρησιμοποιηθεί και σαν \textlatin{classifier.} 
+ \end{itemize}
+ 
+ \subsection*{Μέρος 2}
+ 
+ Στο δεύτερο μέρος, εφαρμόσαμε \textlatin{LDA} πάνω σε ένα \textlatin{dataset} της βάσης \textlatin{IRIS} και παρατηρήσαμε τα αποτελέσματα.
+ 
+ Το \textlatin{dataset} περιείχε 4 χαρακτηριστικά-διαστάσεις, και ο \textlatin{LDA} μας επέστρεψε δεδομένα $C-1 = 2$ διαστάσεων, όπου $C$ ο αριθμός των κλάσεων. Παρακάτω παρατίθενται τα \textlatin{plots} των χαρακτηριστικών, πριν και μετά την εφαρμογή του \textlatin{LDA}.
+  
+  \begin{figure}[ht]
+\centering
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{8}
+\end{subfigure}%
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{9}
+\end{subfigure}
+\end{figure}
+
+Παρατηροούμε ότι πλέον υπάρχει καλύτερη διαχωρισιμότητα μεταξύ των δεδομένων, χάρη στον \textlatin{LDA}, ο οποίος εκτός απο \textlatin{dimensionality reduction}, μας έδωσε και τις κατευθύνσεις στις οποίες υπάρχει η μέγιστη διαχωρισιμότητα.\\
+\newpage
+
+{\bfΣυμπερασματικά}, και οι 2 παραπάνω αλγόριθμοι πραγματοποιούν μείωση των διαστάσεων του \textlatin{dataset}, με διαφορετικό τρόπο ο καθένας. Το αν και πως θα χρησιμοποιήσουμε τον κάθε αλγόριθμο εξαρτάται από τις ιδιότητες του \textlatin{dataset}. Υπάρχουν περιπτώσεις όπου μπορούν να χρησιμοποιηθούν και οι 2 αλγόριθμοι. Πρώτα ο  \textlatin{PCA} για \textlatin{dimensionality reduction}, έπειτα ο  \textlatin{LDA} για να μετασχηματίσει τα δεδομένα έτσι ώστε να έχουν καλύτερο \textlatin{seperability}, και τέλος ένα μοντέλο για \textlatin{classification}.
+  
+ \section*{Θέμα 4: \textlatin{Bayes}}
+ 
+ Σε αυτό το κομμάτι της αναφοράς θα παρουσιαστουν τα αποτελέσματα της 3ης άσκησης. {\bf Τα ερωτήματα \textlatin{a} και \textlatin{e} που αφορούσαν τον υπολογισμό των ορίων απόφασης, έχουν λυθεί χειρόγραφα, και βρίσκονται στο αντίστοιχο αρχείο}.Παρατίθενται τα ζητούμενα \textlatin{plots}, καθώς και τα αποτελέσματα των υπόλοιπων ερωτημάτων:
+ 
+ \begin{figure}[ht]
+\centering
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{10}
+\end{subfigure}%
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{11}
+\end{subfigure}
+\end{figure}
+ 
+ 
+ \begin{itemize}
+  \item για $\Sigma_1 \neq \Sigma_2$
+  
+  Παρατηρούμε πως τα όρια αποφάσεων είναι καμπύλες. Αυτό συμβαίνει γιατί ο όρος $\mathbf{(x - \mu_i)}^\intercal \Sigma_i^{-1} \mathbf{(x - \mu_i)}$ της \textlatin{pdf}, περιέχει όρους της μορφής $ax_1x_2$, όπου $x_1$ και $x_1$ τα στοιχεία του $\mathbf{x}$. Γενικά, για διαφορετικά \textlatin{scatter matrices} μπορούμε να περιμένουμε όρια που έχουν μορφή υπερβολής η παραβολής, εξαιτίας του τετραγωνικού όρου που υπάρχει στο εκθετικό της \textlatin{pdf}.
+  
+  \item για $\Sigma_1 = \Sigma_2$
+  
+  Τα όρια απόφασης είναι ευθείες, αφού ο όρος της \textlatin{pdf} που αναφέρθηκε παραπάνω δεν περιέχει ούτε τετραγωνικούς όρους, ούτε όρους της μορφής $ax_1x_2$.
+ \end{itemize}
+ 
+ Και για τις 2 περιπτώσεις ισχύει ότι, όσο αν η \textlatin{a-priori} πιθανότητα μιας κλάσης αυξάνεται, τόσο το όριο μετακινείται πιο κοντά στην άλλη κλάση. Διαισθητικά, μπορούμε να σκεφτούμε ότι "θέλουμε να αποφασίζουμε πιο συχνά την κλάση με την μεγαλύτερη \textlatin{a-priori} πιθανότητα, και έτσι της δίνουμε μεγαλύτερη περιοχή απόφασης".
+
+ \section*{Θέμα 5: Εξαγωγή χαρακτηρηστικών και \textlatin{Bayes Classification} }
+ 
+ Στην 5η άσκηση ασχληθήκαμε με την εξαγωγή χαρακτηρηστικών και το \textlatin{classification} των ψηφίων 1 και 2 του \textlatin{mnist database}.
+ 
+ Το χαρακτηριστικό το οποίο συλλεξαμε από τις εικόνες είναι το \textlatin{aspect ratio} της κάθε εικόνας, δηλαδή τον λόγο $\frac{width}{height}$ των μη μηδενικών \textlatin{pixels}. Έπειτα, υποθέσαμε ότι τα δείγματα των \textlatin{aspect ratios} προέρχονται από κανονικές κατανομές, με τα \textlatin{sample} $\mu$ και $\sigma$ των δειγμάτων εκπαίδευσης, και φτίαξαμε τις \textlatin{a-posteriori} πιθανότητες για να κάνουμε \textlatin{classification}, χρησιμοποιώντας τον κανόνα του \textlatin{Bayes}. Παρατίθενται 2 ενδεικτικά ψηφία μαζί με τα ορθογώνια που ορίζουν τα \textlatin{aspect ratios}.
+ \begin{figure}[ht]
+\centering
+\begin{subfigure}{.50\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{12}
+\end{subfigure}%
+\begin{subfigure}{.50\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{13}
+\end{subfigure}
+\end{figure}
+
+Το ποσοστό λανθασμένης απόφασης του παραπάνω ταξινομητή ανέρχεται στο $10.93\%$.    
+
+ 
+ 
+\end{center}
+
+
+\end{document}

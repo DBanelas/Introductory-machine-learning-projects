@@ -1,0 +1,281 @@
+\documentclass[12pt]{article}
+\usepackage{a4wide}
+\usepackage{color, amssymb}
+\usepackage[document]{ragged2e}
+\usepackage[greek,english]{babel}
+\usepackage[iso-8859-7]{inputenc}
+\usepackage{amsmath}
+\renewcommand{\baselinestretch}{1.5}
+\input{epsf}
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\graphicspath{ {./EIKONES/} }
+
+
+
+
+\begin{document}
+
+\greektext
+
+\noindent\rule{\textwidth}{2pt}
+\begin{center}
+{\bf Αναφορά αποτελεσμάτων \textlatin{HomeWork 2}}\\
+{\bf Μπανέλας Δημήτριος:} 2018030140\\
+{\bf Μάθημα:} Στατιστική Μοντελοποίηση και Αναγνώριση Προτύπων\\
+{\bf Διδάσκων θεωρίας:} Ζερβάκης Μιχαήλ\\
+{\bf Διδάσκων εργαστηρίου:} Διακολουκάς Βασίλειος\\
+\end{center}
+\rule{\textwidth}{.5pt}
+%\vskip .5cm
+\noindent
+
+\begin{center}
+ \section*{Περιεχόμενα αναφοράς και οδηγίες εκτέλεσης κώδικα}
+ \justify
+ 
+ Ο κώδικας που αναπτύχθηκε για τις ανάγκες των ασκήσεων βρίσκεται στα αρχεία με κώδικα που έχουν ήδη δοθεί. Ο τρόπος εκτέλεσης έμεινε ίδιος με πριν. Πιο συγκεκριμένα, μετά απο κάθε ενέργεια, το πρόγραμμα γίνεται \textlatin{pause} και περιμένει το πάτημα ενός πλήκτρου από τον χρήστη για να συνεχιστεί. Σημαντικό είναι, να υπάρχει παρατήρηση του \textlatin{console} καθ΄ όλη τη διάρκεια εκτέλεσης του κάθε προγράμματος, καθώς εκεί εμφανίζονται σημαντικές πληροφορίες.
+ 
+ Σε πολλά σημεία υπάρχουν \textlatin{blocks} κώδικα που βρίσκονται μέσα σε σχόλια. Ο κώδικας αυτός γράφτηκε για την καλύτερη κατανόηση των εννοιών και δεν είναι απαραίτητος για την ορθή λειτουργία του κάθε προγράματος. Τέλος, ο κώδικας περιέχει επεξηγηματικά σχόλια έτσι ώστε να μπορεί να διαβαστεί με σχετική ευκολία.
+ 
+ \newpage
+ 
+ 
+ \section*{Θέμα 1: Λογιστική Παλινδρόμηση: Αναλυτική εύρεση κλίσης (\textlatin{Gradient})}
+ 
+ Στο α) κομμάτι της άσκησης ασχοληθήκαμε με την αναλυτική έυρεση της κλίσης της συνάρτησης κόστους. Η διαδικασία έγινε χειρόγραφα και θα βρεθεί στο αντίστοιχο αρχείο.\\
+ 
+ Στο β) κομμάτι ασχοληθήκαμε με την εφαρμογή της λογιστικής παλινδρόμησης πάνω σε ένα \textlatin{dataset} με βαθμούς απο φοιτήτές, με σκόπο να προβλέψουμε εάν θα γίνουν δεκτοί σε ένα πανεπιστήμιο. Το \textlatin{dataset} 
+ με το οποίο δουλέψαμε φαίνεται παρακάτω.\\
+ 
+ \begin{figure}[ht]
+ \centering
+ \includegraphics[scale = 0.7]{1}
+  \textlatin{\caption{Visualized dataset}}
+ \end{figure}
+ 
+ \newpage
+ Ελαχιστοποιώντας την \textlatin{cross entropy} συνάρτηση κόστους υπολογίζουμε τις παραμέτρους $\theta$ και έπειτα σχεδιάζουμε την ευθεία παλινδρόμησης που ορίζουν τα δεδομένα. Τέλος, χρησιμοποιώντας την \textlatin{sigmoid function} και το υπολογισμένο $\theta$ προβλέπουμε έαν ένας φοιτητής θα γίνει αποδεκτός, με βάση τους βαθμούς του. Παρατίθεται το διάγραμμα με το όριο απόφασης.
+ 
+ \begin{figure}[ht]
+ \centering
+ \includegraphics[scale = 0.7]{2}
+  \textlatin{\caption{Decision boundary}}
+ \end{figure}
+ 
+ 
+ 
+ Το παραπάνω μοντέλο επιτυγχάνει ποσοστά σωστής ταξινόμησης της τάξης του 89 - 90\%, κάτι το οποίο είναι αναμενόμενο δεδομένης της γραμμικής διαχωρισιμότητας των δεδομένων του \textlatin{dataset}. Παρατηρούμε ότι το όριο απόφασης μας δείχνει με αρκετή ακρίβεια τη γραμμή που διαχωρίζει \textlatin{admitted} και \textlatin{not admitted} φοιτητές. Στην επόμενη άσκηση θα μελετήσουμε ένα \textlatin{dataset} του οποίου τα δεδομένα δεν είναι γραμμικά διαχωρίσιμα.
+ \newpage
+ 
+  \section*{Θέμα 2: Λογιστική Παλινδρόμηση με Ομαλοποίηση}
+ 
+ Στο α) κομμάτι της άσκησης ασχοληθήκαμε με την αναλυτική έυρεση της κλίσης της συνάρτησης κόστους. Η διαδικασία έγινε χειρόγραφα και θα βρεθεί στο αντίστοιχο αρχείο.\\
+ 
+ Στο β) κομμάτι ασχοληθήκαμε με την εφαρμογή της λογιστικής παλινδρόμησης με ομαλοποίηση πάνω σε ένα \textlatin{dataset} με 2 \textlatin{tests} από \textlatin{microchips} με σκοπό να πραγματοποιήσουμε  \textlatin{quality analysis}, δηλαδή να βρούμε ποιά από τα \textlatin{chips} δουλεύουν σωστά. Αρχίζουμε με το να οπτικοποιήσουμε τα δεδομένα.
+ \begin{figure}[ht]
+ \centering
+ \includegraphics[scale = 0.7]{3}
+  \textlatin{\caption{Decision boundary}}
+ \end{figure}
+ 
+ Επειδή τα δεδομένα δεν είναι γραμμικώς διαχωρίσιμα θα χρειαστεί να τα προβάλουμε σε χώρο μεγαλύτερης διάστασης έτσι ώστε να υπολογίσουμε ένα σύνορο απόφασης. Αυτο επιτυγχάνεται με το να προβάλουμε τα δεδομένα στον χώρο που ορίζουν όλοι οι όροι των πολυωνύμων $x_1$ και $x_2$ βαθμού μέχρι και 6. Παρακάτω φαίνονται οι σχέσεις που χρησιμοποιήθηκαν.
+ \newpage
+ 
+ \[
+  P(x_1,x_2) = \sum_{i=0}^6{\sum_{j=0}^i{x_1^{i-j}x_2^j}}\\
+ \]
+ \[
+   mapFeature(x)=[1,x_1,x_2,x_1^2,x_1x_2,x_2^2,x_1^3,\dots,x_1x_2^5,x_2^6]^T
+ \]
+
+ Τέλος, βελτιστοποιώντας τους παράγοντες $\theta$ σχεδιάσαμε και παρτηρήσαμε τα σύνορα απόφασης για τις διάφορες τιμές του $\lambda$.
+
+ \begin{figure}[ht]
+\centering
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{4}
+  \textlatin{\caption{Accuracy = 87.28 \%}}
+\end{subfigure}%
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{5}
+  \textlatin{\caption{Accuracy = 82.20 \%}}
+\end{subfigure}\\
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{6}
+  \textlatin{\caption{Accuracy = 74.57 \%}}
+\end{subfigure}%
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{7}
+  \textlatin{\caption{Accuracy = 60.16 \%}}
+\end{subfigure}
+\end{figure}
+
+\newpage
+
+Παρατηρούμε πως για $\lambda = 0$ το μοντέλο μας πετυχαίνει το μεγαλυτερο \textlatin{accuracy} πάνω στο δοσμένο \textlatin{dataset}, ωστόσο είναι φανερό πως έχει γίνει \textlatin{overfitting} πάνω σε αυτό το \textlatin{dataset}. Αυτό θα έχει ως αποτέλεσμα το μοντέλο να έχει κακή γενίκευση όταν προκειται για δεδομένα εκτός του \textlatin{training dataset}. Αντίθετώς, $\lambda = 100$ παρατηρούμε το φαινόμενο του \textlatin{underfitting}.
+Το μοντέλο δεν έχει καταφέρει να μοντελοποιήσει σωστά το \textlatin{training dataset}, επομένως έχει πολύ κακό \textlatin{accuracy} πάνω σε αυτό, καθώς και καμία πιθανότητα γενικέυσης. Για $\lambda = 1$ και $\lambda = 10$ παρατηρούμε πως έχουμε βρεί ένα αρκετά γενικό όριο απόφασης, το οποίο έχει αρκετά καλό \textlatin{accuracy} στα δεδομένα του \textlatin{training dataset} και θα μπορεί να γενικεύσει και σε δεδομένα εκτός αυτού.
+
+ 
+ \section*{Θέμα 4: Εκτίμηση Παραμέτρων και Ταξινόμηση \textlatin{(ML-Naive Bayes Classifier)}}
+ 
+ Σε αυτή την άσκηση θα χρησιμοποιήσουμε τον \textlatin{Maximum Likelihood} ετιμητή και τον \textlatin{Naive Bayes} ταξινομητη για την αναγνώριση ψηφίων του \textlatin{MNIST dataset}, το οποίο περιέχει εικόνες $28\times28$ με χειρόγραφα ψηφία, από το 1 μέχρι το 9. 
+ 
+ Αρχικά, υποθέτοντας ότι το κάθε \textlatin{pixel} της εικόνας μοντελοποιείται με κατανομή \textlatin{Bernoulli}, θα υπολογίσουμε,χρησιμοποιόντας τον εκτιμητή μέγιστης πιθανοφάνειας , την παράμετρο $p^{y_i}$ που ζητείται στην εκφώνηση. Οι αναλυτικοί υπολογισμοί παρατίθενται στο αντίστοιχο αρχείο.\\
+ 
+ \[
+   p^{y_i} = \frac{1}{n} \cdot \sum^{n}_{k=1}x_k
+ \]\\
+
+ 
+ Στη συνέχεια, χρησιμοποιώντας τον παραπάνω τύπο,εκπαιδεύσαμε τα μονέλα, υπολογίζοντας το διάνυσμα παραμέτων \textlatin{p} γιά κάθε ψηφίο.H διαδικάσια αυτή έγινε ώς εξής: Για κάθε ψηφίο, πήραμε όλες τις \textlatin{training} εικόνες και απο αυτές υπολογίσαμε την πιθανότητα το κάθε \textlatin{pixel} να έχει την τιμή 1, δηλαδή να είναι άσπρο.  Παρακάτω φαίνεται η οπτικοποίηση του διανύσματος \textlatin{p} αυτού για τα ψηφία 8 και 9.
+
+ 
+ \begin{figure}[ht]
+\centering
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{8}
+\end{subfigure}%
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{9}
+\end{subfigure}
+\textlatin{\caption{p parameters visualization of digits 8 and 9}}
+\end{figure}
+ 
+ Όπως μπορούμε να παρατηρήσουμε οι παραπάνω οπτικοποιήσεις μας δίνουν μία αρκετά ακριβή αναπαράσταση των πραγματικών ψηφίων, μίας και τα \textlatin{pixels} της εικόνας είναι είναι όσο φώτεινα, όσο η πιθανότητα τους να είναι ίση με 1.
+ 
+ Tέλος, δοκιμάσαμε την ικανότητα του μοντέλου μας δινόντας του να ταξινομήσει τις εικόνες από τα \textlatin{testsets}. H ταξινόμηση έγινε με βάση το μεγαλύτερο \textlatin{log-Likelihood} των\textlatin{pixels}
+ της κάθε εικόνας, δεδομένης της παραμέτρου \textlatin{p}. Δηλαδη:
+ 
+ \[
+  decided\_digit = argmax_i \hspace{0.2cm} X \cdot \log{p_i} + (1-X)\cdot \log(1-p_i)
+ \]\\
+ 
+ Όπου Χ το διάνυσμα των \textlatin{pixels} μίας εικόνας και $p_i$ το διάνυσμα παραμέτρων του \textlatin{i}-οστου ψηφίου. Παρακάτω παρατίθεται το \textlatin{confusion matrix} της ταξινόμησης, το οποίο μας δείχνει πόσες φορές ένα κάποιο στοιχείο ταξινομήθηκε σωστά και πόσες ώς ένα άλλο ψηφίο. H πρώτη αριστερά στήλη αντιπροσωπεύει τα πραγματικά ψηφία ενώ η πρώτη πάνω γραμμή αντιπροσωπεύει τα \textlatin{classified} ψηφία.
+ 
+ \newpage
+ 
+ \begin{center}
+\begin{tabular}{ |c|c|c|c|c|c|c|c|c|c|c| } 
+ \hline
+  \textlatin{digit} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\ 
+  0 & 441 & 0 & 1 & 0 &  2 & 30 & 13 & 0 & 12 & 1\\
+  1 & 0 & 472 & 2 & 3 & 0 & 13 & 4 & 0 & 6 & 0\\
+  2 & 8 & 12 & 375 & 37 & 7 & 2 & 9 & 13 & 33 & 4\\
+  3 & 1 & 10 & 4 & 416 & 5 & 23 & 5 & 13 & 10 & 13\\
+  4 & 1 & 1 & 5 & 0 & 374 & 4 & 15 & 2 & 5 & 93\\
+  5 & 14 & 2 & 3 & 67 & 20 & 345 & 7 & 6 & 15 & 21\\
+  6 & 7 & 10 & 28 & 0 & 7 & 33 & 412 & 0 & 3 & 0\\
+  7 & 1 & 21 & 9 & 3 & 15 & 0 & 0 & 395 & 10 & 46\\
+  8 & 6 & 16 & 12 & 49 & 11 & 18 & 1 & 3 & 349 & 35\\
+  9 & 3 & 8 & 3 & 8 & 51 & 7 & 0 & 6 & 5 & 409\\
+ \hline
+\end{tabular}
+\end{center}
+
+\vspace{\baselineskip}
+Παρατηρούμε πως συνήθως, όταν ένα ψηφίο θα γίνει \textlatin{missclassified} ώς ένα ψηφίο πολύ παρόμοιο, πχ 4 με 7, 4 με 9, 7 με 9. Γενικά, βλέπουμε πως τα ψήφια ταξινομούνται σωστά τις περισσότερες φορές. Η ακρίβεια του μοντέλου φαίνεται στον παρακάτω πίνακα.\\
+ 
+ \begin{center}
+\begin{tabular}{ |c|c|c|c|c|c|c|c|c|c|c| } 
+ \hline
+  \textlatin{Accuracy of digit(\%)} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\ 
+   & 88.20 & 94.4 & 75 & 83.20 & 74.8 & 69 & 82.4  & 79 & 69.8 & 81.8 \\
+  
+ \hline
+\end{tabular}
+\end{center}
+\vspace{\baselineskip}
+
+Η γενική ακρίβεια του μοντέλού κυμαίνεται στα 79.76\% κάτι το οποίο είναι αναμενόμενο καθώς έχουμε κάνει τη θεώρηση ότι τα \textlatin{pixels} είναι ανεξάρτητα, η οποία είναι λάθος. Πχ. ένα μάυρο \textlatin{pixel} στη γωνία της εικόνας θα σημαίνει ότι με μεγάλη πιθανότητα ότι και τα κοντινά του θα είναι μαύρα.
+
+\newpage
+
+\section*{Θέμα 5: \textlatin{Support Vector Machines} (Αναλυτική βελτιστοποίηση με ΚΚΤ)}
+
+Για το Α μέρος, τα δείγματα παρατίθενται στο παρακάτω σχήμα.
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[scale = 0.6]{10}
+ \end{figure}
+ Διαισθητικά προτείνουμε ότι το βέλτιστο γραμμικό υπερεπιπεδο διαχωρισμού είναι η ευθεία $x_1 = 2$\\
+ 
+ Για το Β μέρος, τα δείγματα, πριν και μετά τον μετασχηματισμό παρατίθενται παρακάτω.
+ 
+ \begin{figure}[ht]
+\centering
+\begin{subfigure}{.50\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{11}
+\end{subfigure}%
+\begin{subfigure}{.50\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{12}
+\end{subfigure}
+\textlatin{\caption{Vectors before and after kernel trick}}
+\end{figure}
+
+Σε αυτή την περίπτωση, πριν γίνει το \textlatin{kernel trick} δεν μπορούμε να προτείνουμε διαισθητικά ένα γραμμικό επίπεδο διαχωρισμού. Η αναλυτική βελτιστοποίηση έγινε χειρόγραφα και βρίσκεται στο αντίστοιχο αρχείο.
+
+
+\section*{Θέμα 6: \textlatin{Support Vector Machines} (Eφαρμογή σε τεχνητό σύνολο δεδομένων)}
+
+{\bfΜέρος Α}\\
+Για το Α μέρος, ελαχιστοποιήσαμε την κατάλληλη συνάρτηση κάνοντας χρήση της συνάρτησης quadprog της  \textlatin{MATLAB} αφού υπολογίσαμε τους απαραίτητους για τη λειτουργία της πίνακες. Τα δείγματα,  \textlatin{support vectors} και το γραμμικό υπερεπίπεδο διαχωρισμού παρατίθενται στο παρακάτω \textlatin{plot}.
+\begin{figure}[ht]
+ \centering
+ \includegraphics[scale = 0.7]{13}
+ \end{figure}
+ 
+ \newpage
+ {\bfΜέρος B}\\
+ Στο μέρος B στα δεδομένα που έχουμε προστίθεται ένας \textlatin{outlier}. Αυτό είναι κακό κάθως είτε θα μας κάνει τα δεδομένα  να μην είναι γραμμικά διαχωρίσιμα, είτε θα μας δώσει ένα υπερεπίπεδο γραμμικού διαχωρισμού το οποίο δεν είναι βέλτιστο για τα υπόλοιπα δεδομένα. Για να λύσουμε αυτό το πρόβλημα, εισάγουμε τις μεταβήτές περιθωρίου 
+ \textlatin{slack variables}, οι οποίες επιτρέπουν σε μερικά δείγματα να βρίσκονται από την λάθος πλευρά της επιφάνειας απόφασης. Το επίπεδο ανοχής συμβολίζεται με τη μεταβλητή $C$. Υλοποιώντας την λαγκριανζιανή του προηγούμενου ερωτήματος και προσθέτοντας τον περιορισμό $0 \leq \lambda^{(i)} \leq C$ παίρνουμε τα παρακάτω αποτελέσματα.
+ \begin{figure}[ht]
+\centering
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{14}
+\end{subfigure}%
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{15}
+\end{subfigure}\\
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{16}
+\end{subfigure}%
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{17}
+\end{subfigure}
+\end{figure}
+ \newpage
+ 
+ Παρατηρούμε πως όσο μεγαλύτερο είναι το $C$ τόσο πλησιάζουμε στο \textlatin{hard margin SVM} του πρώτου μέρους.Όσο το $C$ τοσο η ανοχή αυξάνεται και περισσότερα δείγματα βρίσκονται στο εσωτερικό της ζώνης διαχωρισμού των κλάσεων.\\
+ 
+ {\bfΜέρος Γ}\\
+ Στο μέρος Γ έχουμε στη διάθεση μας ένα  \textlatin{dataset} με μη γραμμικά διαχωρίσιμα δείγματα. Για να καταφέρουμε να βρούμε ένα υπερεπίπεδο διαχωρισμού θα χρειαστεί να εφαρμόσουμε \textlatin{kernel trick}. Θα προβάλουμε τα δεδομένα στον τρισδιάστατο χώρο και θα βρούμε ένα υπερεπίπεδο διαχωρισμού εκεί. Υλοποιώντας τα προηγούμενα, προκύπτει το παρακάτω όριο απόφασης.
+ \begin{figure}[ht]
+ \centering
+ \includegraphics[scale = 0.7]{18}
+ \end{figure}
+ \vspace{\baselineskip}
+ 
+ Χρησιμοποιώντας το \textlatin{kernel trick} καταφέραμε να διαχωρίσουμε ένα \textlatin{dataset} από μη γραμμικά διαχωρίσιμα δείγματα.
+ 
+ 
+ \end{center}
+ 
+ \end{document}
+ 
+ 

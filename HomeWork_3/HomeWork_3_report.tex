@@ -1,0 +1,231 @@
+\documentclass[12pt]{article}
+\usepackage{a4wide}
+\usepackage{color, amssymb}
+\usepackage[document]{ragged2e}
+\usepackage[greek,english]{babel}
+\usepackage[iso-8859-7]{inputenc}
+\usepackage{amsmath}
+\renewcommand{\baselinestretch}{1.5}
+\input{epsf}
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\graphicspath{ {./IMAGES/} }
+
+
+
+
+\begin{document}
+
+\greektext
+
+\noindent\rule{\textwidth}{2pt}
+\begin{center}
+{\bf Αναφορά αποτελεσμάτων \textlatin{HomeWork 3}}\\
+{\bf Μπανέλας Δημήτριος:} 2018030140\\
+{\bf Μάθημα:} Στατιστική Μοντελοποίηση και Αναγνώριση Προτύπων\\
+{\bf Διδάσκων θεωρίας:} Ζερβάκης Μιχαήλ\\
+{\bf Διδάσκων εργαστηρίου:} Διακολουκάς Βασίλειος\\
+\end{center}
+\rule{\textwidth}{.5pt}
+%\vskip .5cm
+\noindent
+
+
+\begin{center}
+ \section*{Περιεχόμενα αναφοράς και οδηγίες εκτέλεσης κώδικα}
+ \justify
+ 
+ Ο κώδικας που αναπτύχθηκε για τις ανάγκες των ασκήσεων βρίσκεται στα αρχεία με κώδικα που έχουν ήδη δοθεί. Ο τρόπος εκτέλεσης έμεινε ίδιος με πριν. Πιο συγκεκριμένα, μετά απο κάθε ενέργεια, το πρόγραμμα γίνεται \textlatin{pause} και περιμένει το πάτημα ενός πλήκτρου από τον χρήστη για να συνεχιστεί. Σημαντικό είναι, να υπάρχει παρατήρηση του \textlatin{console} καθ΄ όλη τη διάρκεια εκτέλεσης του κάθε προγράμματος, καθώς εκεί εμφανίζονται σημαντικές πληροφορίες.
+ 
+ Σε πολλά σημεία υπάρχουν \textlatin{blocks} κώδικα που βρίσκονται μέσα σε σχόλια. Ο κώδικας αυτός γράφτηκε για την καλύτερη κατανόηση των εννοιών και δεν είναι απαραίτητος για την ορθή λειτουργία του κάθε προγράματος. Τέλος, ο κώδικας περιέχει επεξηγηματικά σχόλια έτσι ώστε να μπορεί να διαβαστεί με σχετική ευκολία.
+ 
+ \newpage
+ 
+ 
+ \end{center}
+ \section*{Θέμα 1: \textlatin{Feature Selection - Classification - Cross Validation - Overfitting}}
+ 
+ Σε αυτή την άσκηση, ασχοληθήκαμε με το \textlatin{feature selection} και το \textlatin{cross validation - leave one out}, σαν μέθοδο αξιολόγησης του μοντέλου. Έχουμε δεδομένα για 25 άτομα, με 1000 χαρακτηριστικά. Καθώς οι τιμές των χαρακτηριστικών παράγονται τυχαία, δεν υπάρχει καμία πληροφορία για τα ατομά, κάτι το οποίο θα διαπιστώσουμε με τους παρακάτω ταξινομητές. Σε όλα τα παρακάτω πειράματα, για το \textlatin{feature selection} έχει χρησιμοποιηθεί ώς \textlatin{similarity measure}, το \textlatin{Pearson correlation coefficient} μεταξύ των χαρακτηριστικών και των \textlatin{labels}.
+ 
+ \subsection*{1.α Ταξινομητής χωρίς \textlatin{feature selection}}
+ 
+ Οπως διαπιστώνουμε μέσω του κώδικα, τα δεδομάνα δεν παρέχουν καμία πληροφορία στον ταξινομητή, σχετικά με τον διαχωρισμό τον ατόμων και έτσι η ακρίβεια που επιτυγχάνεται κατά μέσο όρο είναι 50\%.
+ 
+ \subsection*{1.b Ταξινομητής με \textlatin{feature selection} εντός του \textlatin{cross validation}}
+ 
+ Με τη χρήση της μεθόδου \textlatin{cross validation - leave one out} χωρίζουμε το \textlatin{dataset} σε Ν-1 \textlatin{training} δείγματα και 1 \textlatin{test} δείγμα. Το \textlatin{feature selection} γίνεται με τα N-1 δείγματα. Λόγω της τυχαιότητας των δεδομένων το μοντέλο έχει και πάλι μέσο όρο \textlatin{accuracy} 50\%.
+ 
+ \subsection*{1.γ Ταξινομητής με \textlatin{feature selection} εκτός του \textlatin{cross validation}}
+ 
+ Στο συγκεκριμένο πείραμα, το \textlatin{feature selection} έγινε χρησιμοποιώντας όλα τα δείγματα, πριν τη διαδικασία του \textlatin{cross validation}. Αυτό σημαίνει πως το \textlatin{test} δείγμα του \textlatin{cross validation} έχει συμμετάσχει στο \textlatin{feature selection} και έτσι, το μοντέλο επιτυγχάνει κάθε φορά ακρίβεια 100\%. Αυτά τα ποσοστά μας δείχνουν ότι έχει συμβεί \textlatin{overfitting}, ότι δηλαδή το μοντέλο έχει υπερπροσαρμοστεί στα \textlatin{training} δεδομένα. Αυτό μας δείχνει ότι θα πρέπει να αποφύγουμε το \textlatin{feature selection} πριν από το \textlatin{cross validation}, και να το ενσωματώσουμε μέσα σε αυτό.
+ 
+ \section*{Θέμα 2: Υλοποίηση ενός απλού νευρωνικού δικτύου}
+ 
+ Σε αυτή την άσκηση υλοποιήσαμε ένα νευρωνικό δίκτυο και το χρησιμοποιήσαμε για ταξινόμηση. Για \textlatin{activation function} χρησιμοποιήθηκε η λογιστική συνάρτηση
+ 
+ \[
+  f(z) = \frac{1}{1+e^{-z}}
+ \]
+ ενώ για συνάρτηση κόστους χρησιμοποιήθηκε ο μέσος όρος της \textlatin{cross entropy loss} πάνω σε Β δείγματα \textlatin{(batch)}.
+ \[
+  J(Y,\hat{Y}; W,b) = \frac{1}{B}\sum_{i}(-y^{(i)}ln(\hat{y}^{(i)})-(1-y^{(i)})ln(1-\hat{y}^{(i)}))
+ \]
+ 
+ Το κανονικοποιημένο \textlatin{dataset} φαίνεται στο παρακάτω σχήμα:
+ \begin{figure}[ht]
+ \centering
+ \includegraphics[scale = 0.70]{2_1}
+ \end{figure}
+ 
+ Στο {\bf\textlatin{forward pass}} υλοποιήθηκε η εξής συνάρτηση:
+ \[
+  \hat{y}^{(i)} = f(x^{(i)}W+b)
+ \]
+
+
+  Στο {\bf\textlatin{backward pass}} υλοποιήθηκαν οι μερικές παράγωγοι:
+  \[
+  \frac{\partial J}{\partial W} = \frac{1}{B}\sum_{i}(\hat{y}^{(i)}-y^{(i)})x^{(i)^T}
+ \]
+ \[
+  \frac{\partial J}{\partial b} = \frac{1}{B}\sum_{i}(\hat{y}^{(i)}-y^{(i)})
+ \]
+ 
+ Οι παραπάνω παράγωγοι στη συνέχεια χρησιμοποιήθηκαν για την υλοποίηση του αλγορίθμου \textlatin{gradient descent}, με στόχο την εύρεση του διανύσματος βαρών που ελαχιστοποιεί το κόστος.
+ \[
+  W \leftarrow W - \rho \frac{\partial J}{\partial W}
+ \]
+ \[
+  b \leftarrow b - \rho \frac{\partial J}{\partial b}
+ \]
+
+Το παραπάνω νευρωνικό νευρωνικό δίκτυο έχει \textlatin{accuracy} 88\% πάνω στα \textlatin{training} δεδομένα, για \textlatin{55 epochs} εκπαίδευσης. Παρατίθενται τα πραγματικά δεδομένα σε σχέση με τις προβλέψεις που έκανε το νευρωνικό.
+\begin{figure}[ht]
+ \centering
+ \includegraphics[scale = 0.75]{2_2}
+ \end{figure}
+ 
+ Μπορούμε να παρατηρήσουμε ότι οι λανθασμένες προβλέψεις βρίσκονται επί τω πλείστον κοντά στη νοητή γραμμή η οποία διαχωρίζει τις κλάσεις μας, κάτι το οποίο περιμέναμε, μιας και αυτές είναι οι οριακές καταστάσεις. Το να αναπτύσαμε ένα όριο απόφασης το οποίο θα απεφευγε αυτά τα λάθη, θα είχε ώς αποτέλεσμα \textlatin{overfitting}. 
+ 
+ 
+ \section*{Θέμα 3: \textlatin{Convolutional Neural Networks for Image Recognition}}
+Σε αυτή την άσκηση θα μελετήσουμε διάφορες αρχιτεκτονικές ταξινομητών νευρωνικών δικτύων, για την ταξινόμηση του σύνολου δεδομένων \textlatin{Fashion - MNIST}.
+
+\vspace{\baselineskip}
+Στα πρώτα 2 ερωτήματα ασχοληθήκαμε με το ήδη υπάρχον νευρωνικό δίκτυο. Το διάγραμμα των τιμών του \textlatin{accuracy} για κάθε περίπτωση παρατίθεται παρακάτω.
+
+\begin{enumerate}
+{\bf \item 400 \textlatin{epochs} και \textlatin{adam optimizer}}\\
+\begin{figure}[ht]
+\centering
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{50_epoch_adam}
+\end{subfigure}%
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{400_epoch_adam}
+\end{subfigure}
+\end{figure}
+Μπορούμε να δούμε ότι όσο τα \textlatin{epochs} αυξάνονται, το \textlatin{train\_acc} αυξάνεται, ενώ το \textlatin{test\_acc} μειώνεται ελάχιστα ($0,8895 \rightarrow 0,8817$). Αυτό συμβαίνει καθώς όσο περισσότερο χρόνο εκαιδεύεται το νευρωνικό, τοσο περισσότερο τα βάρη του γίνονται \textlatin{fit} στα \textlatin{training} δεδομένα.
+ 
+ 
+ 
+ \newpage
+ 
+ {\bf \item Μελέτη απόδοσης για διάφορους \textlatin{optimizers}}\\
+ 
+ Παρακάτω φαίνονται τα διαγράμματα των τιμών \textlatin{accuracy} για όλους τους \textlatin{optimizers (50 epochs)}.
+ \begin{figure}[ht]
+\centering
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{50_epoch_adam}
+  \textlatin{\caption{adam}}
+\end{subfigure}%
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{50_epoch_sgd}
+  \textlatin{\caption{sgd}}
+\end{subfigure}\\
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{50_epoch_rmsprop}
+  \textlatin{\caption{rmsprop}}
+\end{subfigure}%
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{50_epoch_nadam}
+  \textlatin{\caption{nadam}}
+\end{subfigure}
+\end{figure}
+\newpage
+Και \textlatin{adamax}, \textlatin{ftrl}
+\begin{figure}[ht]
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{50_epoch_adamax}
+  \textlatin{\caption{adam}}
+\end{subfigure}%
+\begin{subfigure}{.55\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{50_epoch_ftrl}
+  \textlatin{\caption{sgd}}
+\end{subfigure}\\
+ \end{figure}
+
+ Παρατίθεται επίσης και ο πίνακας με τα τελικά \textlatin{accuracies} των \textlatin{optimizers}.
+ 
+ \begin{center}
+\begin{tabular}{ |c|c|c|c|c|c|c|c|c|c|c| } 
+ \hline
+  \textlatin{optimizer} & \textlatin{train\_acc} & \textlatin{val\_acc}\\ 
+  \hline
+  \textlatin{adam} & 0.9622 & 0.8921\\
+  \textlatin{sgd} & 0.9137 & 0.8817\\
+  \textlatin{rmsprop} & 0.9477 & 0.8814\\
+  \textlatin{nadam} & 0.9654 & 0.8835\\
+  \textlatin{adamax} & 0.9473 & 0.8899\\
+  \textlatin{ftrl} & 0.8194 & 0.8089\\
+ \hline
+\end{tabular}
+\end{center}
+
+Παρατηρούμε πως οι δύο καλύτεροι αλγόριθμοι βελτιστοποίησης είναι οι \textlatin{adam} και \textlatin{nadam}. Θα διαλέξουμε ως καλύτερο τον \textlatin{adam} αφού πετυχαίνει καλύτερο \textlatin{validation accuracy} και εξίσου καλό \textlatin{training accuracy} με τον \textlatin{nadam}.
+
+
+\newpage
+{\bf \item Κατασκευή \textlatin{CNN}}\\
+Στη συνέχεια, θα προσεγγίσουμε το παραπάνω πρόβλημα της ταξινόμησης χρησιμοποιώντας \textlatin{Convolutional NNs}. Αφού υλοποιήσαμε την αρχιτεκτονική της εκφώνησης, κάναμε τα παρακάτω πειράματα. Παρατίθεται το διάγραμμα των \textlatin{accuracies} πριν οποιαδήποτε αλλαγή.
+\begin{figure}[ht]
+ \centering
+ \includegraphics[scale = 0.80]{cnn_before_normalization}
+ \end{figure}
+ 
+ \newpage
+
+{\bf \item Προσθήκη  \textlatin{Batch normalization}}\\
+Το διάγραμμα των \textlatin{accuracies} μετά την προσθήκη του \textlatin{batch normalization} παρατίθεται παρακάτω:
+\begin{figure}[ht]
+ \centering
+ \includegraphics[scale = 0.80]{cnn_after_normalization}
+ \end{figure}
+
+
+{\bf \item Προσθήκη  \textlatin{Dropout}}\\
+\begin{figure}[ht]
+ \centering
+ \includegraphics[scale = 0.80]{cnn_after_dropout}
+ \end{figure}
+\newpage
+ Η χρήση του \textlatin{dropout} απενεργοποιεί τυχαία εξόδους νευρώνων στο \textlatin{layer} στο οποίο εφαρμόζεται. Αυτο έχει ώς αποτέλεσμα τη μείωση του \textlatin{train\_acc}. Έτσι η τάση για \textlatin{overfitting} μειώνεται και η απόδοση σε δεδομένα εκτός του \textlatin{training set} αυξάνεται.
+ 
+\end{enumerate}
+
+ 
+ 
+
+\end{document}
+
